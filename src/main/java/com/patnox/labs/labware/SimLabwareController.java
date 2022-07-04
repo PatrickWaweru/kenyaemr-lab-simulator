@@ -1,4 +1,4 @@
-package com.patnox.labs;
+package com.patnox.labs.labware;
 
 import java.util.List;
 
@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "api/v1/results")
-public class SimResultController {
-    private static Logger logger = LoggerFactory.getLogger(SimResultController.class);
+@RequestMapping(path = "api/v1/labware")
+public class SimLabwareController {
+    private static Logger logger = LoggerFactory.getLogger(SimLabwareController.class);
     private RestResultService restResultService;
 
     @Autowired
-    public SimResultController(RestResultService restResultService) {
+    public SimLabwareController(RestResultService restResultService) {
         this.restResultService = restResultService;
     }
 
@@ -32,14 +32,14 @@ public class SimResultController {
     //     return restResultService.getAllResults(query);
     // }
 
-    @PostMapping
+    @PostMapping("push")
     public void getLabResultPOST(@RequestBody String query){
-        logger.info("Entering Lab Result POST Processor: " + query);
+        logger.info("Entering Labware Lab Result POST Processor: " + query);
     }
 
-    @GetMapping
+    @GetMapping("pull")
     public List<ResultObject> getLabResultGET(@RequestParam(name = "order_no") String order_no) {
-        logger.info("Entering Lab Result GET Processor: " + order_no);
+        logger.info("Entering Labware Lab Result GET Processor: " + order_no);
         return restResultService.getAllResults(order_no);
     }
 }

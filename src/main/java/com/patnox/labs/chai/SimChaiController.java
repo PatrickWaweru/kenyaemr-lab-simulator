@@ -1,4 +1,4 @@
-package com.patnox.labs;
+package com.patnox.labs.chai;
 
 import java.util.List;
 
@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "api/v1/request")
-public class SimRequestController {
-    private static Logger logger = LoggerFactory.getLogger(SimRequestController.class);
+@RequestMapping(path = "api/v1/chai")
+public class SimChaiController {
+    private static Logger logger = LoggerFactory.getLogger(SimChaiController.class);
     private RestRequestService restRequestService;
 
     @Autowired
-    public SimRequestController(RestRequestService restRequestService) {
+    public SimChaiController(RestRequestService restRequestService) {
         this.restRequestService = restRequestService;
     }
 
@@ -31,14 +31,14 @@ public class SimRequestController {
     //     logger.info("Entering Lab Request POST Processor");
     //     return restRequestService.getAllResults(query);
     // }
-    @PostMapping
+    @PostMapping("push")
     public void getLabResultPOST(@RequestBody String query){
-        logger.info("Entering Lab Request POST Processor: " + query);
+        logger.info("Entering Chai Lab Request POST Processor: " + query);
     }
 
-    @GetMapping
+    @GetMapping("pull")
     public List<ResultObject> getLabRequestGET(@RequestParam(name = "order_no") String order_no) {
-        logger.info("Entering Lab Request GET Processor: " + order_no);
+        logger.info("Entering Chai Lab Request GET Processor: " + order_no);
         return restRequestService.getAllResults(order_no);
     }
 }

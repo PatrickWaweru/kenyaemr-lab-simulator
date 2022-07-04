@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.patnox</groupId>
 	<artifactId>labs</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1.2</version>
 	<name>labs</name>
 	<description>labs simulator</description>
 	<properties>

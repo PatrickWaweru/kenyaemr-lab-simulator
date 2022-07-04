@@ -1,4 +1,4 @@
-package com.patnox.labs;
+package com.patnox.labs.labware;
 
 import java.io.Serializable;
 import java.util.Random;
