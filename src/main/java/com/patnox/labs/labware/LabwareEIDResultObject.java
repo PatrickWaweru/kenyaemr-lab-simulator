@@ -1,11 +1,11 @@
-package com.patnox.labs.chai;
+package com.patnox.labs.labware;
 
 import java.io.Serializable;
 import java.util.Random;
 
 // @Table
 // @Entity
-public class ResultObject implements Serializable {
+public class LabwareEIDResultObject implements Serializable {
 
     private Long id;
     private String order_number;
@@ -15,10 +15,10 @@ public class ResultObject implements Serializable {
     private dateObject date_received;
     private dateObject date_tested;
 
-    public ResultObject() {
+    public LabwareEIDResultObject() {
     }
 
-    public ResultObject(String order_number, String sample_status, String lab_no, String result, dateObject date_received, dateObject date_tested) {
+    public LabwareEIDResultObject(String order_number, String sample_status, String lab_no, String result, dateObject date_received, dateObject date_tested) {
         this.id = getRadId();
         this.order_number = order_number;
         this.sample_status = sample_status;

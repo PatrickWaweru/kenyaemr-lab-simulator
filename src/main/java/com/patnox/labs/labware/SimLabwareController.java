@@ -19,27 +19,38 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "api/v1/labware")
 public class SimLabwareController {
     private static Logger logger = LoggerFactory.getLogger(SimLabwareController.class);
-    private RestResultService restResultService;
+    private RestLabwarePullEIDService restLabwarePullEIDService;
+    private RestLabwarePullVLService restLabwarePullVLService;
 
     @Autowired
-    public SimLabwareController(RestResultService restResultService) {
-        this.restResultService = restResultService;
+    public SimLabwareController(RestLabwarePullEIDService restLabwarePullEIDService, RestLabwarePullVLService restLabwarePullVLService) {
+        this.restLabwarePullEIDService = restLabwarePullEIDService;
+        this.restLabwarePullVLService = restLabwarePullVLService;
     }
 
-    // @PostMapping
-    // public List<ResultObject> getLabResultPOST(@RequestBody String query){
-    //     logger.info("Entering Lab Result POST Processor");
-    //     return restResultService.getAllResults(query);
-    // }
+    // EID
 
-    @PostMapping("push")
-    public void getLabResultPOST(@RequestBody String query){
-        logger.info("Entering Labware Lab Result POST Processor: " + query);
+    @PostMapping("eid/push")
+    public void getEIDLabResultPOST(@RequestBody String query){
+        logger.info("Entering Labware EID Lab Result PUSH Processor: " + query);
     }
 
-    @GetMapping("pull")
-    public List<ResultObject> getLabResultGET(@RequestParam(name = "order_no") String order_no) {
-        logger.info("Entering Labware Lab Result GET Processor: " + order_no);
-        return restResultService.getAllResults(order_no);
+    @GetMapping("eid/pull")
+    public List<LabwareVLResultObject> getEIDLabResultGET(@RequestParam(name = "order_no") String order_no) {
+        logger.info("Entering Labware EID Lab Result PULL Processor: " + order_no);
+        return restLabwarePullEIDService.getAllResults(order_no);
+    }
+
+    // VL
+
+    @PostMapping("vl/push")
+    public void getVLLabResultPOST(@RequestBody String query){
+        logger.info("Entering Labware VL Lab Result PUSH Processor: " + query);
+    }
+
+    @GetMapping("vl/pull")
+    public List<LabwareVLResultObject> getVLLabResultGET(@RequestParam(name = "order_no") String order_no) {
+        logger.info("Entering Labware VL Lab Result PULL Processor: " + order_no);
+        return restLabwarePullVLService.getAllResults(order_no);
     }
 }

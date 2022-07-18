@@ -19,26 +19,48 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "api/v1/chai")
 public class SimChaiController {
     private static Logger logger = LoggerFactory.getLogger(SimChaiController.class);
-    private RestRequestService restRequestService;
+    private RestChaiPullEIDService restChaiPullEIDService;
+    private RestChaiPullVLService restChaiPullVLService;
 
     @Autowired
-    public SimChaiController(RestRequestService restRequestService) {
-        this.restRequestService = restRequestService;
+    public SimChaiController(RestChaiPullEIDService restChaiPullEIDService, RestChaiPullVLService restChaiPullVLService) {
+        this.restChaiPullEIDService = restChaiPullEIDService;
+        this.restChaiPullVLService = restChaiPullVLService;
     }
 
-    // @PostMapping
-    // public List<ResultObject> getLabRequestPOST(@RequestBody String query){
-    //     logger.info("Entering Lab Request POST Processor");
-    //     return restRequestService.getAllResults(query);
-    // }
-    @PostMapping("push")
-    public void getLabResultPOST(@RequestBody String query){
-        logger.info("Entering Chai Lab Request POST Processor: " + query);
+    // EID
+    @PostMapping("eid/push")
+    public void getEIDLabResultPOST(@RequestBody String query){
+        logger.info("Entering Chai EID Lab Request PUSH Processor: " + query);
     }
 
-    @GetMapping("pull")
-    public List<ResultObject> getLabRequestGET(@RequestParam(name = "order_no") String order_no) {
-        logger.info("Entering Chai Lab Request GET Processor: " + order_no);
-        return restRequestService.getAllResults(order_no);
+    @GetMapping("eid/pull")
+    public RestChaiPullEIDService.returnObject getEIDLabRequestGET(@RequestParam(name = "order_numbers") String order_numbers) {
+        logger.info("Entering Chai EID Lab Request PULL Processor: " + order_numbers);
+        return restChaiPullEIDService.getAllResults(order_numbers);
+    }
+
+    @PostMapping("eid/pull")
+    public RestChaiPullEIDService.returnObject getEIDLabRequestPost(@RequestParam(name = "order_numbers") String order_numbers) {
+        logger.info("Entering Chai EID Lab Request PULL Processor: " + order_numbers);
+        return restChaiPullEIDService.getAllResults(order_numbers);
+    }
+
+    //VL
+    @PostMapping("vl/push")
+    public void getVLLabResultPOST(@RequestBody String query){
+        logger.info("Entering Chai VL Lab Request PUSH Processor: " + query);
+    }
+
+    @GetMapping("vl/pull")
+    public RestChaiPullVLService.returnObject getVLLabRequestGET(@RequestParam(name = "order_numbers") String order_numbers) {
+        logger.info("Entering Chai VL Lab Request PULL Processor: " + order_numbers);
+        return restChaiPullVLService.getAllResults(order_numbers);
+    }
+
+    @PostMapping("vl/pull")
+    public RestChaiPullVLService.returnObject getVLLabRequestPost(@RequestParam(name = "order_numbers") String order_numbers) {
+        logger.info("Entering Chai VL Lab Request PULL Processor: " + order_numbers);
+        return restChaiPullVLService.getAllResults(order_numbers);
     }
 }

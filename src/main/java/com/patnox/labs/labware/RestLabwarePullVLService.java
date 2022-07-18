@@ -1,4 +1,4 @@
-package com.patnox.labs.chai;
+package com.patnox.labs.labware;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class RestRequestService
+public class RestLabwarePullVLService
 {
 	// private final StatsRepository statsRepository;
 
@@ -18,13 +18,13 @@ public class RestRequestService
 	//     this.statsRepository = statsRepository;
 	//   }
 	  
-	public List<ResultObject> getAllResults(String boost)
+	public List<LabwareVLResultObject> getAllResults(String boost)
 	{
         System.out.println("Processing: " + boost);
-	    List<ResultObject> mess = new ArrayList<>();
+	    List<LabwareVLResultObject> mess = new ArrayList<>();
         String[] orderIds = boost.split(",");
         for(String m : orderIds) {
-            ResultObject ro = new ResultObject(m, "Complete", "1627045", "Negative", new ResultObject.dateObject("2022-04-04 00:00:00.000000", 3, "Africa/Nairobi"), new ResultObject.dateObject("2022-04-04 00:00:00.000000", 3, "Africa/Nairobi"));
+            LabwareVLResultObject ro = new LabwareVLResultObject(m, "Complete", "1627045", "<LDL", new LabwareVLResultObject.dateObject("2022-04-04 00:00:00.000000", 3, "Africa/Nairobi"), new LabwareVLResultObject.dateObject("2022-04-04 00:00:00.000000", 3, "Africa/Nairobi"));
             mess.add(ro);
             System.out.println("Adding payload for order: " + m);
         }

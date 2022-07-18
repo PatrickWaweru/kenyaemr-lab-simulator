@@ -5,7 +5,7 @@ import java.util.Random;
 
 // @Table
 // @Entity
-public class ResultObject implements Serializable {
+public class LabwareVLResultObject implements Serializable {
 
     private Long id;
     private String order_number;
@@ -15,10 +15,10 @@ public class ResultObject implements Serializable {
     private dateObject date_received;
     private dateObject date_tested;
 
-    public ResultObject() {
+    public LabwareVLResultObject() {
     }
 
-    public ResultObject(String order_number, String sample_status, String lab_no, String result, dateObject date_received, dateObject date_tested) {
+    public LabwareVLResultObject(String order_number, String sample_status, String lab_no, String result, dateObject date_received, dateObject date_tested) {
         this.id = getRadId();
         this.order_number = order_number;
         this.sample_status = sample_status;
